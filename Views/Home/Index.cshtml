@@ -1,0 +1,43 @@
+@model Wrapper
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <header>
+        <a href="/products">Products</a>
+        <br>
+        <a href="/categories">Categories</a>
+    </header>
+    <main>
+        <section>
+            <h2>New Product</h2>
+            <form asp-action="CreateProduct" asp-controller="Home">
+                <span asp-validation-for="Product.Name"></span>
+                <label asp-for="Product.Name"></label>
+                <input asp-for="Product.Name">
+                <br>
+                <span asp-validation-for="Product.Description"></span>
+                <label asp-for="Product.Description"></label>
+                <input asp-for="Product.Description">
+                <br>
+                <span asp-validation-for="Product.Price"></span>
+                <label asp-for="Product.Price"></label>
+                <input asp-for="Product.Price">
+                <br>
+                <button>Create</button>
+            </form>
+        </section>
+        <section>
+            <h2>Existing Products</h2>
+            @foreach (Product product in Model.AllProducts)
+            {
+                <li><a href="/products/@product.ProductId">@product.Name</a></li>
+            }
+        </section>
+    </main>
+</body>
+</html>

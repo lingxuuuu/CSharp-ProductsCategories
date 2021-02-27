@@ -1,0 +1,35 @@
+@model Wrapper
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+</head>
+<body>
+    <header>
+        <a href="/products">Products</a>
+        <br>
+        <a href="/categories">Categories</a>
+    </header>
+    <main>
+        <section>
+            <h2>New Category</h2>
+            <form asp-action="CreateCategory" asp-controller="Home">
+                <span asp-validation-for="Category.Name"></span>
+                <label asp-for="Category.Name"></label>
+                <input asp-for="Category.Name">
+                <br>
+                <button>Create</button>
+            </form>
+        </section>
+        <section>
+            <h2>Existing Categories</h2>
+            @foreach (Category category in Model.AllCategories)
+            {
+                <li><a href="/categories/@category.CategoryId">@category.Name</a></li>
+            }
+        </section>
+    </main>
+</body>
+</html>
